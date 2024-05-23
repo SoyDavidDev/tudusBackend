@@ -18,6 +18,9 @@ INSTALLED_APPS = [
 
     # Local apps
     'applications.user.apps.UserConfig',
+    'applications.lists.apps.ListsConfig',
+    'applications.todo.apps.TodoConfig',
+
 ]
 
 AUTH_USER_MODEL = 'user.User'

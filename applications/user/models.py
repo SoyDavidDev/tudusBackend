@@ -11,7 +11,7 @@ class User(AbstractUser):
     # email = models.EmailField('Email',max_length=50, unique=True)
     # is_active = models.BooleanField('Activo',default=True)
 
-    # Los campos ya están definidos en AbstracUser
+    # Los campos ya están definidos en AbstractUser
     # PermissionsMixin añade los campos is_staff y is_superuser
     # AbstractBaseUser añade el campo password
     # AbstractUser añade los campos username, first_name, last_name, email, is_active
