@@ -4,7 +4,7 @@ from applications.user.models import User
 # Create your models here.
 
 class List(models.Model):
-    name = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     user_id = models.ForeignKey(
@@ -13,5 +13,11 @@ class List(models.Model):
         related_name='lists'
     )
 
+    class Meta:
+        verbose_name = 'List'
+        verbose_name_plural = 'Lists'
+        ordering = ['-id']
+    
+
     def __str__(self):
-        return self.name + ' - ' + self.user_id.username
+        return self.title + ' - ' + self.user_id.username

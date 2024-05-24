@@ -22,5 +22,11 @@ class Todo(models.Model):
         related_name='todos'
     )
 
+    class Meta:
+        verbose_name = 'Todo'
+        verbose_name_plural = 'Todos'
+        ordering = ['-id']
+    
+
     def __str__(self):
-        return self.name + ' - ' + self.list_id.name + ' - ' + self.user_id.username
+        return self.title + ' - ' + self.list_id.name + ' - ' + self.user_id.username
