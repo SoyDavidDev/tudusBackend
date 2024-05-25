@@ -21,7 +21,10 @@ INSTALLED_APPS = [
     'applications.lists.apps.ListsConfig',
     'applications.todo.apps.TodoConfig',
 
+    # Third party apps
+    'rest_framework',
 ]
+
 
 AUTH_USER_MODEL = 'user.User'
 

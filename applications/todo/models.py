@@ -29,4 +29,4 @@ class Todo(models.Model):
     
 
     def __str__(self):
-        return self.title + ' - ' + self.list_id.name + ' - ' + self.user_id.username
+        return self.title + ' - ' + self.list_id.title + ' - ' + self.user_id.username
