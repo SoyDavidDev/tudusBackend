@@ -13,6 +13,7 @@ from rest_framework.generics import (
 # Local imports
 from .models import List
 from applications.todo.models import Todo
+from applications.user.models import User
 
 # Serializers
 from .serializers import ListSerializer
@@ -35,6 +36,17 @@ class ListTodos(ListAPIView):
 class CreateList(CreateAPIView):
     serializer_class = ListSerializer
     queryset = List.objects.all()
+
+class CreateListbyUser(CreateAPIView):
+    serializer_class = ListSerializer
+    queryset = List.objects.all()
+
+    def perform_create(self, serializer):
+        user_id = self.request.data.get('user_id')
+        user = get_object_or_404(User, id=user_id)
+        serializer.save(user=user)
+
+
 
 class ListDetail(RetrieveAPIView):
     serializer_class = ListSerializer

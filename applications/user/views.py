@@ -9,6 +9,10 @@ from rest_framework.generics import (
     UpdateAPIView,
     RetrieveUpdateAPIView,
     )
+from rest_framework_simplejwt.views import TokenObtainPairView
+from rest_framework_simplejwt.views import TokenRefreshView
+from rest_framework.permissions import IsAuthenticated
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 # Local imports
 from .models import User
@@ -31,11 +35,10 @@ class UserLists(ListAPIView):
         user = get_object_or_404(User, id=user_id)
         return user.lists.all()
 
-     
 
 class CreateUser(CreateAPIView):
-    serializer_class = UserSerializer
     queryset = User.objects.all()
+    serializer_class = UserSerializer
 
     
 class UserDetail(RetrieveAPIView):
@@ -57,5 +60,22 @@ class UserRetrieveUpdate(RetrieveUpdateAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
+class CustomTokenObtainSerializer(TokenObtainPairSerializer):
+    @classmethod
+    def get_token(cls, user):
+        token = super().get_token(user)
 
+        # Add custom claims
+        token['id'] = user.id
 
+        return token
+
+    def validate(self, attrs):
+        data = super().validate(attrs)
+
+        data['id'] = self.user.id
+
+        return data
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    serializer_class = CustomTokenObtainSerializer

@@ -16,7 +16,7 @@ class User(AbstractUser):
     # AbstractBaseUser añade el campo password
     # AbstractUser añade los campos username, first_name, last_name, email, is_active
     # AbstractUser hereda de AbstractBaseUser y PermissionsMixin
-
+    
     class Meta:
         verbose_name = 'Usuario'
         verbose_name_plural = 'Usuarios'
