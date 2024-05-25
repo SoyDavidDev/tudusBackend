@@ -1,5 +1,5 @@
 # Django imports
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_object_or_404
 # Rest Framework imports
 from rest_framework.generics import (
     ListAPIView, 
@@ -13,7 +13,6 @@ from rest_framework.generics import (
 # Local imports
 from .models import User
 from applications.lists.models import List
-
 # Serializers
 from .serializers import UserSerializer
 from applications.lists.serializers import ListSerializer
@@ -29,7 +28,7 @@ class UserLists(ListAPIView):
     def get_queryset(self):
         user_id = self.kwargs['pk']
         # We manage the exception here to return a 404 response
-        user = get_list_or_404(List, id=user_id)
+        user = get_object_or_404(User, id=user_id)
         return user.lists.all()
 
      

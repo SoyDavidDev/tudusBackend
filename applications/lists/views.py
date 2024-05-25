@@ -1,5 +1,5 @@
 # Django imports
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_object_or_404
 # Rest Framework imports
 from rest_framework.generics import (
     ListAPIView, 
@@ -29,7 +29,7 @@ class ListTodos(ListAPIView):
     def get_queryset(self):
         list_id = self.kwargs['pk']
         # We manage the exception here to return a 404 response
-        list = get_list_or_404(Todo, id=list_id)
+        list = get_object_or_404(Todo, id=list_id)
         return list.todos.all()
 
 class CreateList(CreateAPIView):
