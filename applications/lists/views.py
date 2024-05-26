@@ -30,7 +30,7 @@ class ListTodos(ListAPIView):
     def get_queryset(self):
         list_id = self.kwargs['pk']
         # We manage the exception here to return a 404 response
-        list = get_object_or_404(Todo, id=list_id)
+        list = get_object_or_404(List, id=list_id)
         return list.todos.all()
 
 class CreateList(CreateAPIView):

@@ -1,5 +1,5 @@
 # Django imports
-
+from django.core.exceptions import ObjectDoesNotExist
 # Rest Framework imports
 from rest_framework.generics import (
     ListAPIView, 
@@ -9,9 +9,11 @@ from rest_framework.generics import (
     UpdateAPIView,
     RetrieveUpdateAPIView,
     )
+from rest_framework.exceptions import ValidationError
 
 # Local imports
 from .models import Todo
+from applications.lists.models import List
 
 # Serializers
 from .serializers import TodoSerializer
