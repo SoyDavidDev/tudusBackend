@@ -8,7 +8,7 @@ from applications.lists.models import List
 class Todo(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    completed = models.BooleanField(default=False)
+    completed = models.BooleanField(default=False, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     list_id = models.ForeignKey(

@@ -32,6 +32,7 @@ class ListTodos(ListAPIView):
         # We manage the exception here to return a 404 response
         list = get_object_or_404(List, id=list_id)
         return list.todos.all()
+ 
 
 class CreateList(CreateAPIView):
     serializer_class = ListSerializer
