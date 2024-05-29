@@ -10,15 +10,18 @@ from rest_framework.generics import (
     RetrieveUpdateAPIView,
     )
 from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.views import TokenRefreshView
-from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 
 # Local imports
 from .models import User
 from applications.lists.models import List
 # Serializers
-from .serializers import UserSerializer
+from .serializers import UserSerializer, ChangePasswordSerializer
 from applications.lists.serializers import ListSerializer
 
 
@@ -79,3 +82,47 @@ class CustomTokenObtainSerializer(TokenObtainPairSerializer):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainSerializer
+
+
+class ChangePasswordView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def put(self, request, *args, **kwargs):
+        serializer = ChangePasswordSerializer(data=request.data)
+        if serializer.is_valid():
+            old_password = serializer.data.get('old_password')
+            if not request.user.check_password(old_password):
+                return Response({'old_password': 'Contraseña incorrecta'}, status=status.HTTP_400_BAD_REQUEST)
+            request.user.set_password(serializer.data.get('new_password'))
+            request.user.save()
+            return Response({'message': 'Contraseña actualizada correctamente'}, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class PauseAccountView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    def put(self, request, *args, **kwargs):
+        user = get_object_or_404(User, id=kwargs['pk'])
+
+        if request.user != user:
+            return Response({'message': 'No tienes permiso para pausar esta cuenta'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        user.is_active = False
+        user.save()
+        return Response({'message': 'Cuenta pausada correctamente'}, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def activate_user(request,username):
+    try:
+        user = User.objects.get(username=username)
+        user.is_active = True
+        user.save()
+        return Response({'message': 'Cuenta activada correctamente'}, status=status.HTTP_200_OK)
+    except User.DoesNotExist:
+        return Response({'message': 'El usuario no existe'}, status=status.HTTP_404_NOT_FOUND)
+
+
+
+
+

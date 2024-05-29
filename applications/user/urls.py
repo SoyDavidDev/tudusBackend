@@ -12,4 +12,7 @@ urlpatterns = [
     path('api/v1/users/<int:pk>/delete/', views.UserDelete.as_view(), name='user-delete'),
     path('api/v1/users/<int:pk>/update/', views.UserUpdate.as_view(), name='user-update'),
     path('api/v1/users/<int:pk>/retrieve-update/', views.UserRetrieveUpdate.as_view(), name='user-retrieve-update'),
+    path('api/v1/users/<int:pk>/change_password/', views.ChangePasswordView.as_view(), name='change-password'),
+    path('api/v1/users/<int:pk>/pause/', views.PauseAccountView.as_view(), name='pause-user'),
+    path('api/v1/users/<str:username>/activate/', views.activate_user, name='activate-user'),
 ]
