@@ -12,7 +12,7 @@ Con Tudú, los usuarios pueden crear, actualizar y eliminar listas de tareas, as
 1. Clona este repositorio en tu máquina local:
 
    ```bash
-   git clone https://github.com/tu-usuario/tudu-backend.git
+   git clone https://github.com/SoyDavidDev/tudusBackend.git
 
 2. Instala las dependencias utilizando pip:
    ```bash
