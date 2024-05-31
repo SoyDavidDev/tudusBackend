@@ -28,3 +28,12 @@ class ChangePasswordSerializer(serializers.Serializer):
         validate_password(value)
         return value
 
+# Necesitamos un serializer para validar los datos de la solicitud de recuperación de contraseña
+class PasswordResetSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+
+    def validate_email(self, value):
+        user = User.objects.filter(email=value).first()
+        if user is None:
+            raise serializers.ValidationError('No existe un usuario con ese email')
+        return value
