@@ -36,4 +36,4 @@ class PasswordResetSerializer(serializers.Serializer):
         user = User.objects.filter(email=value).first()
         if user is None:
             raise serializers.ValidationError('No existe un usuario con ese email')
-        return value
+        return user.email

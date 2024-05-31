@@ -1,5 +1,3 @@
-# .gitignore
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -31,15 +29,10 @@ MANIFEST
 
 # Django stuff:
 *.log
-*.pot
-*.pyc
-db.sqlite3
 media
 
-# PyCharm stuff
+# IDEs and editors 
 .idea/
-
-# VS Code stuff
 .vscode/
 
 # Environments

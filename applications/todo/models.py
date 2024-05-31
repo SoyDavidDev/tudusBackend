@@ -1,8 +1,10 @@
+# Django imports
 from django.db import models
 
+# Local imports
 from applications.user.models import User
 from applications.lists.models import List
-# Create your models here.
+
 
 
 class Todo(models.Model):
