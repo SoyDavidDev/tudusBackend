@@ -1,6 +1,6 @@
 # Tudú Backend
 
-Este es el backend del proyecto Tudú, una aplicación de gestión de listas de tareas desarrollada con Django para DAW.
+Este es el backend del proyecto final de DAW llamado Tudú, una aplicación de gestión de listas de tareas desarrollada con Django.
 
 ## Descripción del Proyecto
 
@@ -15,18 +15,18 @@ Con Tudú, los usuarios pueden crear, actualizar y eliminar listas de tareas, as
    git clone https://github.com/tu-usuario/tudu-backend.git
 
 2. Instala las dependencias utilizando pip:
-
-pip install -r requirements.txt
+   ```bash
+   pip install -r requirements.txt
 
 3. Configura las variables de entorno en un archivo .env
 
 4. Ejecuta las migraciones de la base de datos:
-   
-python manage.py migrate
+    ```bash
+   python manage.py migrate
 
 5. Inicia el servidor:
-
-python manage.py runserver
+   ```bash
+   python manage.py runserver
 
 
 
