@@ -2,7 +2,8 @@
 
 Este es el backend del proyecto final de DAW llamado Tudú, una aplicación de gestión de listas de tareas desarrollada con Django.
 
-[!Proyecto final Daw ](https://github.com/SoyDavidDev/devdocs/blob/main/phytonweb/link_bio/assets/projects/195shots_so.png)
+![Mi portfolio](https://github.com/SoyDavidDev/devdocs/blob/main/phytonweb/link_bio/assets/projects/195shots_so.png)
+
 
 ## Descripción del Proyecto
 
